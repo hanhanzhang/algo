@@ -4,7 +4,7 @@ import com.sdu.algorithm.utils.TreeNode;
 import com.sdu.algorithm.utils.TreeUtils;
 import java.util.Stack;
 
-public class LT173 {
+public class LT0173 {
 
   public static class BSTIterator {
 
