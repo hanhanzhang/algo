@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
 
-public class LT347 {
+public class LT0347 {
 
     private static int[] topKFrequent(int[] nums, int k) {
         // 记录频次

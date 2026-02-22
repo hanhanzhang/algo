@@ -20,29 +20,33 @@ package com.sdu.algorithm.leetcode;
 import com.sdu.algorithm.utils.ListNode;
 import com.sdu.algorithm.utils.ListUtils;
 
-public class LT328 {
+public class LT0328 {
 
-    private static ListNode oddEvenList(ListNode head) {
-        if (head == null)
-            return null;
-        ListNode odd = head, even = head.next, evenHead = even;
-        while (even != null && even.next != null) {
-            odd.next = even.next;
-            odd = odd.next;
-            even.next = odd.next;
-            even = even.next;
+    public ListNode oddEvenList(ListNode head) {
+        ListNode dummyEven = new ListNode(0);
+        ListNode dummyOdd = new ListNode(0);
+        ListNode evenCur = dummyEven, oddCur = dummyOdd, cur = head;
+        int index = 1;
+        while (cur != null) {
+            if (index % 2 == 0) {   // 偶数
+                oddCur.next = cur;
+                oddCur = oddCur.next;
+            } else {
+                evenCur.next = cur;
+                evenCur = evenCur.next;
+            }
+            index++;
+            cur = cur.next;
         }
-        odd.next = evenHead;
-        return head;
+        evenCur.next = dummyOdd.next;
+        oddCur.next = null;
+        return dummyEven.next;
     }
 
     public static void main(String[] args) {
         ListNode head = ListUtils.buildListNode(new Integer[]{1, 2, 3, 4, 5});
-        ListNode newHead = oddEvenList(head);
-        while (newHead != null) {
-            System.out.println(newHead.val);
-            newHead = newHead.next;
-        }
+        LT0328 lt = new LT0328();
+        ListUtils.printListNode(lt.oddEvenList(head));
     }
 
 }

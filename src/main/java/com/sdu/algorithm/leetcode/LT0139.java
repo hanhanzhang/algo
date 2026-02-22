@@ -22,7 +22,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class LT139 {
+public class LT0139 {
 
     private static boolean dfs(String s, int start, Set<String> dict) {
         if (start >= s.length()) {

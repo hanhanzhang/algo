@@ -17,7 +17,7 @@
 
 package com.sdu.algorithm.leetcode;
 
-public class LT387 {
+public class LT0387 {
 
     private static int firstUniqChar(String s) {
         if (s == null || s.isEmpty())

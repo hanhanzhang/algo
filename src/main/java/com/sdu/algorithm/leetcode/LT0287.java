@@ -17,7 +17,7 @@
 
 package com.sdu.algorithm.leetcode;
 
-public class LT287 {
+public class LT0287 {
 
     private static int findDuplicate(int[] nums) {
         // 重复元素可有多个, 故不可用异或运算

@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class LT140 {
+public class LT0140 {
 
     private static List<String> dfs(String s, int start, Set<String> dict, Map<Integer, List<String>> memo) {
         if (start >= s.length()) {

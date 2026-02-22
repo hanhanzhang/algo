@@ -17,7 +17,7 @@
 
 package com.sdu.algorithm.leetcode;
 
-public class LT338 {
+public class LT0338 {
 
     private static int[] countBits(int num) {
         int[] ans = new int[num + 1];

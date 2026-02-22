@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class LT332 {
+public class LT0332 {
 
     private static void findItinerary(String start, Map<String, List<String>> graph, List<String> ans) {
         List<String> nbr = graph.get(start);

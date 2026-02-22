@@ -17,7 +17,7 @@
 
 package com.sdu.algorithm.leetcode;
 
-public class LT208 {
+public class LT0208 {
 
     private static class TrieNode {
 

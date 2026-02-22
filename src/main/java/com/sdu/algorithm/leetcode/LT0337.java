@@ -20,7 +20,7 @@ package com.sdu.algorithm.leetcode;
 import com.sdu.algorithm.utils.TreeNode;
 import com.sdu.algorithm.utils.TreeUtils;
 
-public class LT337 {
+public class LT0337 {
 
     private static int rob(TreeNode root) {
         /*
