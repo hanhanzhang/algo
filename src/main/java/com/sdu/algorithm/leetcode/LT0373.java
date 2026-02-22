@@ -1,3 +1,20 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.sdu.algorithm.leetcode;
 
 import java.util.ArrayList;
@@ -19,7 +36,7 @@ public class LT0373 {
             if (ele[2] != col - 1) {
                 int row = ele[1];
                 int newCol = ele[2] + 1;
-                queue.offer(new int[] {nums2[row] + nums1[newCol], row, newCol});
+                queue.offer(new int[]{nums2[row] + nums1[newCol], row, newCol});
             }
             List<Integer> result = new ArrayList<>();
             result.add(nums1[ele[2]]);
@@ -31,7 +48,7 @@ public class LT0373 {
 
     public static void main(String[] args) {
         LT0373 lt = new LT0373();
-        System.out.println(lt.kSmallestPairs(new int[]{1,2,4,5,6}, new int[]{3,5,7,9}, 3));
+        System.out.println(lt.kSmallestPairs(new int[]{1, 2, 4, 5, 6}, new int[]{3, 5, 7, 9}, 3));
     }
 
 }

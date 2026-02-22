@@ -1,8 +1,26 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.sdu.algorithm.leetcode;
 
 public class LT0138 {
 
     public static class Node {
+
         int val;
         Node next;
         Node random;
@@ -36,9 +54,9 @@ public class LT0138 {
         Node cur = dummy;
         cursor = head;
         while (cursor != null) {
-            cur.next = cursor.next;          // 复制节点加入拷贝链表
+            cur.next = cursor.next; // 复制节点加入拷贝链表
             cur = cur.next;
-            cursor.next = cur.next;          // 恢复原链表 next
+            cursor.next = cur.next; // 恢复原链表 next
             cursor = cursor.next;
         }
 

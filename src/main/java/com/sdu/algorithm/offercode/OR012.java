@@ -1,3 +1,20 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.sdu.algorithm.offercode;
 
 public class OR012 {
@@ -14,7 +31,7 @@ public class OR012 {
         visited[x][y] = 1;
         boolean ret = dfs(board, x + 1, y, word, index + 1, visited)
                 || dfs(board, x - 1, y, word, index + 1, visited)
-                || dfs(board, x, y + 1, word,index + 1, visited)
+                || dfs(board, x, y + 1, word, index + 1, visited)
                 || dfs(board, x, y - 1, word, index + 1, visited);
         if (!ret) {
             visited[x][y] = 0;
@@ -41,15 +58,15 @@ public class OR012 {
     }
 
     public static void main(String[] args) {
-        char[][] board1 = new char[][] {
-                {'A', 'B', 'C', 'E'} ,
-                {'S', 'F', 'C', 'S'} ,
+        char[][] board1 = new char[][]{
+                {'A', 'B', 'C', 'E'},
+                {'S', 'F', 'C', 'S'},
                 {'A', 'D', 'E', 'E'}
         };
         System.out.println(exist(board1, "ABCCED"));
 
-        char[][] board2 = new char[][] {
-                {'A', 'B'} ,
+        char[][] board2 = new char[][]{
+                {'A', 'B'},
                 {'C', 'D'}
         };
         System.out.println(exist(board2, "abcd"));

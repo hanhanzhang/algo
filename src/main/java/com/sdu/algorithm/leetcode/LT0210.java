@@ -1,3 +1,20 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.sdu.algorithm.leetcode;
 
 import com.sdu.algorithm.utils.ArrayUtils;
@@ -14,7 +31,7 @@ public class LT0210 {
         int[] degree = new int[numCourses];
         // 记录每个节点出边(即: 每个节点输出边)
         List<Integer>[] edges = new LinkedList[numCourses];
-        for(int i = 0; i < numCourses; i++) {
+        for (int i = 0; i < numCourses; i++) {
             edges[i] = new LinkedList<>();
         }
         for (int[] prerequisite : prerequisites) {
@@ -23,7 +40,7 @@ public class LT0210 {
         }
         Queue<Integer> queue = new LinkedList<>();
         // 选修课程
-        int[] ans  = new int[numCourses];
+        int[] ans = new int[numCourses];
         // 入度为零即无依赖课程, 则入队列
         for (int i = 0; i < numCourses; i++) {
             if (degree[i] == 0) {
@@ -53,7 +70,7 @@ public class LT0210 {
 
     public static void main(String[] args) {
         LT0210 lt = new LT0210();
-        ArrayUtils.printArray(lt.findOrder(2, new int[][]{ {1, 0} }));
+        ArrayUtils.printArray(lt.findOrder(2, new int[][]{{1, 0}}));
     }
 
 }
