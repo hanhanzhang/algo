@@ -22,7 +22,7 @@ import com.sdu.algorithm.utils.ListUtils;
 
 public class LT0021 {
 
-    private static ListNode mergeTwoLists(ListNode n1, ListNode n2) {
+    public ListNode mergeTwoLists(ListNode n1, ListNode n2) {
         // 哑巴节点
         ListNode dumpNode = new ListNode(0);
         ListNode cur = dumpNode;
@@ -48,11 +48,8 @@ public class LT0021 {
     public static void main(String[] args) {
         ListNode n1 = ListUtils.buildListNode(new Integer[]{1, 2, 4});
         ListNode n2 = ListUtils.buildListNode(new Integer[]{1, 3, 4});
-        ListNode head = mergeTwoLists(n1, n2);
-        while (head != null) {
-            System.out.println(head.val);
-            head = head.next;
-        }
+        LT0021 lt = new LT0021();
+        ListUtils.printListNode(lt.mergeTwoLists(n1, n2));
     }
 
 }

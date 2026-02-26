@@ -21,15 +21,13 @@ import com.sdu.algorithm.utils.ListNode;
 
 public class LT0141 {
 
-    private static boolean hasCycle(ListNode head) {
-        ListNode slow = head, fast = head;
-        while (true) {
-            if (fast == null || fast.next == null) {
-                break;
-            }
+    public boolean hasCycle(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
-            if (fast == slow) {
+            if (slow == fast) {
                 return true;
             }
         }
@@ -49,7 +47,8 @@ public class LT0141 {
         node0.next = node4;
         node4.next = node2;
 
-        System.out.println(hasCycle(root));
+        LT0141 lt = new LT0141();
+        System.out.println(lt.hasCycle(root));
     }
 
 }

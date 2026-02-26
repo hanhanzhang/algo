@@ -20,38 +20,69 @@ package com.sdu.algorithm.leetcode;
 import com.sdu.algorithm.utils.ListNode;
 import com.sdu.algorithm.utils.ListUtils;
 
-import java.util.Stack;
-
 public class LT0234 {
 
-    private static boolean isPalindrome(ListNode head) {
-        if (head == null)
-            return false;
-        Stack<ListNode> stack = new Stack<>();
-        ListNode cur = head;
-        while (cur != null) {
-            stack.push(cur);
-            cur = cur.next;
-        }
+//    private static boolean isPalindrome(ListNode head) {
+//        if (head == null)
+//            return false;
+//        Stack<ListNode> stack = new Stack<>();
+//        ListNode cur = head;
+//        while (cur != null) {
+//            stack.push(cur);
+//            cur = cur.next;
+//        }
+//
+//        ListNode tail = stack.pop();
+//        while (head != null) {
+//            if (head.val != tail.val)
+//                return false;
+//            if (head == tail || head.next == tail)
+//                break;
+//            head = head.next;
+//            tail = stack.pop();
+//        }
+//        return true;
+//    }
 
-        ListNode tail = stack.pop();
-        while (head != null) {
-            if (head.val != tail.val)
+    public boolean isPalindrome(ListNode head) {
+        // 进阶: o(1)空间复杂度, 则可以翻转后半部分, 然后再比较
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        // 翻转, 区分奇偶
+        ListNode dummy = new ListNode(0);
+        ListNode cur = fast == null ? slow : slow.next;
+        while (cur != null) {
+            ListNode temp = dummy.next;
+            dummy.next = cur;
+            cur = cur.next;
+            dummy.next.next = temp;
+        }
+        // 判断是否是回文
+        ListNode first = head;
+        ListNode second = dummy.next;
+        while (first != null && second != null) {
+            if (first.val != second.val) {
                 return false;
-            if (head == tail || head.next == tail)
-                break;
-            head = head.next;
-            tail = stack.pop();
+            }
+            first = first.next;
+            second = second.next;
         }
         return true;
     }
 
+
+
     public static void main(String[] args) {
-        System.out.println(isPalindrome(ListUtils.buildListNode(new Integer[]{1})));
-        System.out.println(isPalindrome(ListUtils.buildListNode(new Integer[]{1, 2})));
-        System.out.println(isPalindrome(ListUtils.buildListNode(new Integer[]{1, 2, 1})));
-        System.out.println(isPalindrome(ListUtils.buildListNode(new Integer[]{1, 2, 2, 1})));
-        System.out.println(isPalindrome(ListUtils.buildListNode(new Integer[]{1, 1, 2, 1})));
+        LT0234 lt = new LT0234();
+        System.out.println(lt.isPalindrome(ListUtils.buildListNode(new Integer[]{1})));
+        System.out.println(lt.isPalindrome(ListUtils.buildListNode(new Integer[]{1, 2})));
+        System.out.println(lt.isPalindrome(ListUtils.buildListNode(new Integer[]{1, 2, 1})));
+        System.out.println(lt.isPalindrome(ListUtils.buildListNode(new Integer[]{1, 2, 2, 1})));
+        System.out.println(lt.isPalindrome(ListUtils.buildListNode(new Integer[]{1, 1, 2, 1})));
     }
 
 }
