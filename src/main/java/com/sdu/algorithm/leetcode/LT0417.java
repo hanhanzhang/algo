@@ -22,7 +22,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class LT417 {
+public class LT0417 {
 
     private static List<List<Integer>> pacificAtlantic(int[][] matrix) {
         int[][] moved = new int[][]{{0, -1}, {0, 1}, {1, 0}, {-1, 0}};
