@@ -17,50 +17,71 @@
 
 package com.sdu.algorithm.leetcode;
 
-import java.util.Collections;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LT0039 {
 
     // start位置用于去重, 表示start前的元素不可再次被选择
-    private static List<List<Integer>> combinationSum(int[] candidates, int start, int target) {
-        if (target < 0) {
-            return null;
-        }
+//    private static List<List<Integer>> combinationSum(int[] candidates, int start, int target) {
+//        if (target < 0) {
+//            return null;
+//        }
+//
+//        List<List<Integer>> result = new LinkedList<>();
+//        for (int i = start; i < candidates.length; ++i) {
+//            int newTarget = target - candidates[i];
+//            if (newTarget == 0) {
+//                List<Integer> sub = new LinkedList<>();
+//                sub.add(candidates[i]);
+//                result.add(sub);
+//            } else {
+//                // 当前节点可用多次, 故从i处开始搜索, i之前的元素表示不可再选择
+//                List<List<Integer>> subResult = combinationSum(candidates, i, newTarget);
+//                if (subResult == null) {
+//                    continue;
+//                }
+//                for (List<Integer> sub : subResult) {
+//                    sub.add(candidates[i]);
+//                    result.add(sub);
+//                }
+//            }
+//        }
+//
+//        return result;
+//    }
+//
+//    private static List<List<Integer>> combinationSum(int[] candidates, int target) {
+//        if (candidates == null || candidates.length == 0 || target < 0) {
+//            return Collections.emptyList();
+//        }
+//        return combinationSum(candidates, 0, target);
+//    }
 
-        List<List<Integer>> result = new LinkedList<>();
-        for (int i = start; i < candidates.length; ++i) {
-            int newTarget = target - candidates[i];
-            if (newTarget == 0) {
-                List<Integer> sub = new LinkedList<>();
-                sub.add(candidates[i]);
-                result.add(sub);
-            } else {
-                // 当前节点可用多次, 故从i处开始搜索, i之前的元素表示不可再选择
-                List<List<Integer>> subResult = combinationSum(candidates, i, newTarget);
-                if (subResult == null) {
-                    continue;
-                }
-                for (List<Integer> sub : subResult) {
-                    sub.add(candidates[i]);
-                    result.add(sub);
-                }
-            }
+    private void dfs(int[] candidates, int offset, int target, List<List<Integer>> res, List<Integer> ret) {
+        if (offset >= candidates.length || target < 0) {
+            return;
         }
-
-        return result;
+        if (target == 0) {
+            res.add(new ArrayList<>(ret));
+            return;
+        }
+        for (int i = offset; i < candidates.length; i++) {
+            ret.add(candidates[i]);
+            dfs(candidates, i, target - candidates[i], res, ret);
+            ret.remove(ret.size() - 1);
+        }
     }
 
-    private static List<List<Integer>> combinationSum(int[] candidates, int target) {
-        if (candidates == null || candidates.length == 0 || target < 0) {
-            return Collections.emptyList();
-        }
-        return combinationSum(candidates, 0, target);
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> res = new ArrayList<>();
+        dfs(candidates, 0, target, res, new ArrayList<>());
+        return res;
     }
 
     public static void main(String[] args) {
-        List<List<Integer>> result = combinationSum(new int[]{7, 3, 6, 2}, 7);
+        LT0039 lt = new LT0039();
+        List<List<Integer>> result = lt.combinationSum(new int[]{2,3,5}, 8);
         for (List<Integer> r : result) {
             System.out.println(r);
         }
