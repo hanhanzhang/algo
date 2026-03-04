@@ -23,8 +23,8 @@ public class LT0155 {
 
     static class MinStack {
 
-        private Stack<Integer> stack;
-        private Stack<Integer> minStack;
+        private final Stack<Integer> stack;
+        private final Stack<Integer> minStack;
 
         /** initialize your data structure here. */
         public MinStack() {

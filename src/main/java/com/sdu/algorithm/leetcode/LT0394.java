@@ -23,48 +23,87 @@ import java.util.Stack;
 
 public class LT0394 {
 
-    private static String decodeString(String s) {
-        if (s == null || s.isEmpty()) {
-            return s;
-        }
-        // 类似计算表达式, 栈实现
+//    private static String decodeString(String s) {
+//        if (s == null || s.isEmpty()) {
+//            return s;
+//        }
+//        // 类似计算表达式, 栈实现
+//        Stack<Character> stack = new Stack<>();
+//        for (int i = 0; i < s.length(); ++i) {
+//            char c = s.charAt(i);
+//            if (c == ']') {
+//                // 出栈直至碰到数字
+//                List<Character> chars = new ArrayList<>();
+//                int repeat = 0;
+//                while (!stack.isEmpty()) {
+//                    char cc = stack.pop();
+//                    if (cc == '[') {
+//                        int multi = 0;
+//                        while (!stack.isEmpty()) {
+//                            // 重复次数, 如: 2, 10, 100
+//                            char n = stack.peek();
+//                            if (n >= '0' && n <= '9') {
+//                                int nc = (int) stack.pop() - (int) '0';
+//                                repeat += nc * Math.pow(10, multi++);
+//                                continue;
+//                            }
+//                            break;
+//                        }
+//                        break;
+//                    }
+//                    chars.add(cc);
+//                }
+//
+//                // 重复
+//                for (int k = 0; k < repeat; ++k) {
+//                    for (int m = chars.size() - 1; m >= 0; --m) {
+//                        stack.push(chars.get(m));
+//                    }
+//                }
+//            } else {
+//                stack.push(c);
+//            }
+//        }
+//
+//        StringBuilder sb = new StringBuilder();
+//        while (!stack.isEmpty()) {
+//            sb.append(stack.pop());
+//        }
+//
+//        return sb.reverse().toString();
+//    }
+
+    public String decodeString(String s) {
+        char[] chars = s.toCharArray();
         Stack<Character> stack = new Stack<>();
-        for (int i = 0; i < s.length(); ++i) {
-            char c = s.charAt(i);
+        for (char c : chars) {
             if (c == ']') {
-                // 出栈直至碰到数字
-                List<Character> chars = new ArrayList<>();
-                int repeat = 0;
+                List<Character> ret = new ArrayList<>();
                 while (!stack.isEmpty()) {
-                    char cc = stack.pop();
-                    if (cc == '[') {
-                        int multi = 0;
-                        while (!stack.isEmpty()) {
-                            // 重复次数, 如: 2, 10, 100
-                            char n = stack.peek();
-                            if (n >= '0' && n <= '9') {
-                                int nc = (int) stack.pop() - (int) '0';
-                                repeat += nc * Math.pow(10, multi++);
-                                continue;
+                    char p = stack.pop();
+                    if (p >= '0' && p <= '9') { // 出栈直至遇到数字
+                        int repeated = 10;
+                        int num = p - '0';
+                        while (!stack.isEmpty() && stack.peek() >= '0' && stack.peek() <= '9') {
+                            num = num + (stack.pop() - '0') * repeated;
+                            repeated *= 10;
+                        }
+                        for (int j = 0; j < num; j++) {
+                            for (int pos = ret.size() - 1; pos >= 0; pos--) {
+                                stack.push(ret.get(pos));
                             }
-                            break;
                         }
                         break;
-                    }
-                    chars.add(cc);
-                }
-
-                // 重复
-                for (int k = 0; k < repeat; ++k) {
-                    for (int m = chars.size() - 1; m >= 0; --m) {
-                        stack.push(chars.get(m));
+                    } else if (p != '[') {
+                        ret.add(p);
                     }
                 }
-            } else {
-                stack.push(c);
+                continue;
             }
+            stack.push(c);
         }
 
+        // 生成结果
         StringBuilder sb = new StringBuilder();
         while (!stack.isEmpty()) {
             sb.append(stack.pop());
@@ -74,10 +113,11 @@ public class LT0394 {
     }
 
     public static void main(String[] args) {
-        System.out.println(decodeString("3[a]2[bc]"));
-        System.out.println(decodeString("3[a2[c]]"));
-        System.out.println(decodeString("2[abc]3[cd]ef"));
-        System.out.println(decodeString("100[leetcode]"));
+        LT0394 lt = new LT0394();
+        System.out.println(lt.decodeString("3[a]2[bc]"));
+        System.out.println(lt.decodeString("3[a2[c]]"));
+        System.out.println(lt.decodeString("2[abc]3[cd]ef"));
+        System.out.println(lt.decodeString("100[leetcode]"));
     }
 
 }
