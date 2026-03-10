@@ -19,7 +19,7 @@ package com.sdu.algorithm.leetcode;
 
 public class LT0152 {
 
-    private static int maxProduct(int[] nums) {
+    public int maxProduct(int[] nums) {
         // dp[i]: 表示以i结尾的最小值和最大值(考虑nums[i]是负数情况)
         int[][] dp = new int[nums.length][];
         dp[0] = new int[]{nums[0], nums[0]};
@@ -45,12 +45,14 @@ public class LT0152 {
         return ans;
     }
 
+
     public static void main(String[] args) {
-        System.out.println(maxProduct(new int[]{2, 3, -2, 4}));
-        System.out.println(maxProduct(new int[]{-2, 0, -1}));
-        System.out.println(maxProduct(new int[]{-2, 2, 3, -2}));
-        System.out.println(maxProduct(new int[]{-2}));
-        System.out.println(maxProduct(new int[]{-2, 1}));
+        LT0152 lt = new LT0152();
+        System.out.println(lt.maxProduct(new int[]{2, 3, -2, 4}));
+        System.out.println(lt.maxProduct(new int[]{-2, 0, -1}));
+        System.out.println(lt.maxProduct(new int[]{-2, 2, 3, -2}));
+        System.out.println(lt.maxProduct(new int[]{-2}));
+        System.out.println(lt.maxProduct(new int[]{-2, 1}));
     }
 
 }
